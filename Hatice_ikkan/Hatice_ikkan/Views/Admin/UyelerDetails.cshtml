@@ -1,0 +1,84 @@
+﻿@model Hatice_ikkan.Models.Uyeler
+
+@{
+    ViewBag.Title = "UyelerDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="main-panel">
+    <br />
+    <div>
+        <h4>Üyeler Detay Sayfası</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Adı Soyadı
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Adi_Soyadi)
+            </dd>
+
+            <dt>
+                Cinsiyet
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Cinsiyet)
+            </dd>
+
+            <dt>
+                Doğum Tarihi
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Dogum_Tarihi)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Adres)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Adres)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Telefon)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Telefon)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Mail)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Mail)
+            </dd>
+
+            <dt>
+                Kullanıcı Adı
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Kullanici_Adi)
+            </dd>
+
+            <dt>
+               Şifre
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Sifre)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Güncelle", "UyelerEdit", new { id = Model.Uye_id }) |
+        @Html.ActionLink("Geri Dön", "UyelerIndex")
+    </p>
+    </div>

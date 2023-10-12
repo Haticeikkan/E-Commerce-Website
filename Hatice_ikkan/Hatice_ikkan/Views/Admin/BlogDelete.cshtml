@@ -1,0 +1,55 @@
+﻿@model Hatice_ikkan.Models.Blog
+
+@{
+    ViewBag.Title = "BlogDelete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="main-panel">
+    <br />
+    <h2>Blog Silme Sayfası</h2>
+    <br />
+   
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tr>
+                <th>Blog Id</th>
+                <td> @Html.DisplayFor(model => model.Blog_id) </td>
+            </tr>
+            <tr>
+                <th>Blog Başlık</th>
+                <td> @Html.DisplayFor(model => model.Blog_Baslık)</td>
+            </tr>
+            <tr>
+                <th>Blog Özet</th>
+                <td>@Html.DisplayFor(model => model.Blog_Ozet)</td>
+            </tr>
+            <tr>
+                <th>Blog Açıklama</th>
+                <td>@Html.DisplayFor(model => model.Blog_Acıklama)</td>
+            </tr>
+            <tr>
+                <th>Blog Resmi </th>
+                <td>@Html.DisplayFor(model => model.Blog_Resmi)</td>
+            </tr>
+            <tr>
+                <th>Blog Yazar</th>
+                <td>@Html.DisplayFor(model => model.Yoneticiler.Y_Kullanici_Adi)</td>
+            </tr>
+            <tr>
+                <th>Yapılacak İşlem</th>
+                <td>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Sil" class="btn btn-danger" />
+                        </div>
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+    @Html.ActionLink("Geri Dön", "BlogIndex")
+</div>

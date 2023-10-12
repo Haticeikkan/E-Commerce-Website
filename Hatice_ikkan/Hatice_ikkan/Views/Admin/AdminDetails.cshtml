@@ -1,0 +1,35 @@
+﻿@model Hatice_ikkan.Models.Yoneticiler
+
+@{
+    ViewBag.Title = "AdminDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="main-panel">
+    <div class="table-responsive">
+        <br />
+        <h2>Admin Detay Sayfası</h2>
+        <hr />
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th> Yönetici ID </th>
+                    <th> Kullanıcı Adı </th>
+                    <th> Şifre </th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> @Html.DisplayFor(model => model.Yonetici_id)</td>
+                    <td> @Html.DisplayFor(model => model.Y_Kullanici_Adi)</td>
+                    <td> @Html.DisplayFor(model => model.Y_Sifre)</td>
+                    <td>
+                        @Html.ActionLink("Güncelle", "AdminEdit", new { id = Model.Yonetici_id }) |
+                        @Html.ActionLink("Geri Dön", "Index")
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

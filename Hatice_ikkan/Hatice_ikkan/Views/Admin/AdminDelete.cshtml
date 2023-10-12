@@ -1,0 +1,41 @@
+﻿@model Hatice_ikkan.Models.Yoneticiler
+
+@{
+    ViewBag.Title = "AdminDelete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="main-panel">
+    <div class="table-responsive">
+        <br />
+        <h2>Admin Silme Sayfası</h2>
+        <hr />
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th> Yönetici ID </th>
+                    <th> Kullanıcı Adı </th>
+                    <th> Şifre </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> @Html.DisplayFor(model => model.Yonetici_id)</td>
+                    <td> @Html.DisplayFor(model => model.Y_Kullanici_Adi)</td>
+                    <td> @Html.DisplayFor(model => model.Y_Sifre)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Sil" class="btn btn-danger" /> |
+                @Html.ActionLink("Geri Dön", "Index")
+            </div>
+        }
+    </div>
+</div>

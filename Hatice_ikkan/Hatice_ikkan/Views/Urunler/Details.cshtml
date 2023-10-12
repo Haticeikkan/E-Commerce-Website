@@ -1,0 +1,106 @@
+﻿@model Hatice_ikkan.Models.Urunler
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .header-v3 .container-menu-desktop {
+        margin-bottom: 100px;
+    }
+
+    .header-v3 .wrap-menu-desktop {
+        background-color: black;
+    }
+
+    .stext-102 {
+        margin-bottom: 40px;
+    }
+</style>
+
+
+<h2 style="text-align:center">Ürün Detay Sayfası</h2>
+<hr />
+
+<!-- Product Detail -->
+<section class="sec-product-detail bg0 p-t-65 p-b-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-7 p-b-30">
+                <div class="p-l-25 p-r-30 p-lr-0-lg">
+                    <div class="wrap-slick3 flex-sb flex-w">
+                        <div class="slick3 gallery-lb">
+                            <div class="item-slick3" style="height:450px;">
+                                <div class="wrap-pic-w pos-relative">
+                                    <img src="~/urun_resimleri/@Html.DisplayFor(model => model.Urun_Resmi)" alt="IMG-PRODUCT">
+
+                                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="~/urun_resimleri/@Html.DisplayFor(model => model.Urun_Resmi)">
+                                        <i class="fa fa-expand"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-5 p-b-30">
+                <div class="p-r-50 p-t-5 p-lr-0-lg">
+                    <h4 class="mtext-105 cl2 js-name-detail p-b-14">
+                        @Html.DisplayFor(model => model.Urun_Adi)
+                    </h4>
+
+                    <span class="mtext-106 cl2">
+                        @Html.DisplayFor(model => model.Urun_Fiyat)
+                    </span>
+
+                    <p class="stext-102 cl3 p-t-23">
+                        @Html.DisplayFor(model => model.Urun_Aciklama)
+                    </p>
+
+                    <!--  -->
+                    <div class="p-t-33">
+                        <table>
+                            <tr>
+                                <td>
+                                    @using (Html.BeginForm("sepete_ekle", "Sepet", new { Urun_id = Model.Urun_id }))
+                                    {
+                                        if (Session["uyem"] != null)
+                                        {
+                                            <input type="submit" value="Sepete Ekle" name="sepet1" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" />
+                                        }
+                                        else
+                                        {
+                                            <a type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 " href="@Url.Action("UyeGiris", "Uyeler")" ;> Sepete Ekle </a>
+                                        }
+                                    }
+                                </td>
+
+                                <td style="padding-left:45px;">
+                                    @using (Html.BeginForm("fav_ekle", "Fav", new { Urun_id = Model.Urun_id }))
+                                    {
+                                        if (Session["uyem"] != null)
+                                        {
+                                            <input type="submit" value="Favorilere Ekle" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 " />
+                                        }
+                                        else
+                                        {
+                                            <a type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 " href="@Url.Action("UyeGiris", "Uyeler")" ;> Favorilere Ekle </a>
+                                        }
+                                    }
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-left:38px;">
+                @using (Html.BeginForm("Index", "Urunler"))
+                {
+                    <input type="submit" value="Geri Dön" name="Index" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" />
+                }
+            </div>
+        </div>
+    </div>
+</section>

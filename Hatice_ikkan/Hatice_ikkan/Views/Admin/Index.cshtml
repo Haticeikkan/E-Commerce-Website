@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Hatice_ikkan.Models.Yoneticiler>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<!-- partial -->
+<div class="main-panel">
+    <br />
+    <p>
+        @Html.ActionLink("Yeni Admin", "AdminCreate", new { @class= "btn btn-success" })
+    </p>
+    <br />
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th> Kullanıcı Resmi </th>
+                    <th> Yönetici ID </th>
+                    <th> Kullanıcı Adı </th>
+                    <th> Şifre </th>
+                    <th> İşlem Seç  </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="py-1">
+                            <img src="~/Content/assets/images/faces-clipart/pic-1.png" alt="image" />
+                        </td>
+                        <td> @item.Yonetici_id </td>
+                        <td> @item.Y_Kullanici_Adi </td>
+                        <td> @item.Y_Sifre</td>
+                        <td>
+                            @Html.ActionLink("Güncelle", "AdminEdit", new { id = item.Yonetici_id }) |
+                            @Html.ActionLink("Detay", "AdminDetails", new { id = item.Yonetici_id }) |
+                            @Html.ActionLink("Sil", "AdminDelete", new { id = item.Yonetici_id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- main-panel ends -->

@@ -1,0 +1,545 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MytTicaretModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Blog">
+          <Key>
+            <PropertyRef Name="Blog_id" />
+          </Key>
+          <Property Name="Blog_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Blog_Baslık" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Blog_Ozet" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Blog_Acıklama" Type="text" Nullable="false" />
+          <Property Name="Blog_Resmi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Yonetici_id" Type="int" Nullable="false" />
+          <Property Name="Uye_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Favoriler">
+          <Key>
+            <PropertyRef Name="Favori_No" />
+          </Key>
+          <Property Name="Favori_No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Uye_id" Type="int" Nullable="false" />
+          <Property Name="Urun_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kategoriler">
+          <Key>
+            <PropertyRef Name="Kategori_id" />
+          </Key>
+          <Property Name="Kategori_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kategori_Adi" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Siparisler">
+          <Key>
+            <PropertyRef Name="Kayıt_No" />
+          </Key>
+          <Property Name="Kayıt_No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Siparis_id" Type="int" />
+          <Property Name="Siparis_Adet" Type="smallint" Nullable="false" />
+          <Property Name="Siparis_Tarihi" Type="smalldatetime" Nullable="false" />
+          <Property Name="Uye_id" Type="int" Nullable="false" />
+          <Property Name="Urun_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Urunler">
+          <Key>
+            <PropertyRef Name="Urun_id" />
+          </Key>
+          <Property Name="Urun_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Urun_Adi" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Urun_Fiyat" Type="float" Nullable="false" />
+          <Property Name="Urun_Aciklama" Type="nvarchar" MaxLength="300" />
+          <Property Name="Urun_Resmi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Kategori_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Uyeler">
+          <Key>
+            <PropertyRef Name="Uye_id" />
+          </Key>
+          <Property Name="Uye_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Adi_Soyadi" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Cinsiyet" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Dogum_Tarihi" Type="smalldatetime" Nullable="false" />
+          <Property Name="Adres" Type="nvarchar" MaxLength="300" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Kullanici_Adi" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Sifre" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Yoneticiler">
+          <Key>
+            <PropertyRef Name="Yonetici_id" />
+          </Key>
+          <Property Name="Yonetici_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Y_Kullanici_Adi" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Y_Sifre" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Yorumlar">
+          <Key>
+            <PropertyRef Name="Yorum_id" />
+          </Key>
+          <Property Name="Yorum_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Yorum_Yazar" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Yorum_Acıklama" Type="text" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Blog__Uye_id__300424B4">
+          <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="1" />
+          <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uyeler">
+              <PropertyRef Name="Uye_id" />
+            </Principal>
+            <Dependent Role="Blog">
+              <PropertyRef Name="Uye_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Blog__Yonetici_i__30F848ED">
+          <End Role="Yoneticiler" Type="Self.Yoneticiler" Multiplicity="1" />
+          <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yoneticiler">
+              <PropertyRef Name="Yonetici_id" />
+            </Principal>
+            <Dependent Role="Blog">
+              <PropertyRef Name="Yonetici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Favoriler__Urun___31EC6D26">
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="1" />
+          <End Role="Favoriler" Type="Self.Favoriler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urunler">
+              <PropertyRef Name="Urun_id" />
+            </Principal>
+            <Dependent Role="Favoriler">
+              <PropertyRef Name="Urun_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Favoriler__Uye_i__32E0915F">
+          <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="1" />
+          <End Role="Favoriler" Type="Self.Favoriler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uyeler">
+              <PropertyRef Name="Uye_id" />
+            </Principal>
+            <Dependent Role="Favoriler">
+              <PropertyRef Name="Uye_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Siparisle__Urun___33D4B598">
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="1" />
+          <End Role="Siparisler" Type="Self.Siparisler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urunler">
+              <PropertyRef Name="Urun_id" />
+            </Principal>
+            <Dependent Role="Siparisler">
+              <PropertyRef Name="Urun_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Siparisle__Uye_i__34C8D9D1">
+          <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="1" />
+          <End Role="Siparisler" Type="Self.Siparisler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uyeler">
+              <PropertyRef Name="Uye_id" />
+            </Principal>
+            <Dependent Role="Siparisler">
+              <PropertyRef Name="Uye_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Urunler__Kategor__35BCFE0A">
+          <End Role="Kategoriler" Type="Self.Kategoriler" Multiplicity="1" />
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategoriler">
+              <PropertyRef Name="Kategori_id" />
+            </Principal>
+            <Dependent Role="Urunler">
+              <PropertyRef Name="Kategori_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MytTicaretModelStoreContainer">
+          <EntitySet Name="Blog" EntityType="Self.Blog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Favoriler" EntityType="Self.Favoriler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kategoriler" EntityType="Self.Kategoriler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Siparisler" EntityType="Self.Siparisler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Urunler" EntityType="Self.Urunler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Uyeler" EntityType="Self.Uyeler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yoneticiler" EntityType="Self.Yoneticiler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yorumlar" EntityType="Self.Yorumlar" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Blog__Uye_id__300424B4" Association="Self.FK__Blog__Uye_id__300424B4">
+            <End Role="Uyeler" EntitySet="Uyeler" />
+            <End Role="Blog" EntitySet="Blog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Blog__Yonetici_i__30F848ED" Association="Self.FK__Blog__Yonetici_i__30F848ED">
+            <End Role="Yoneticiler" EntitySet="Yoneticiler" />
+            <End Role="Blog" EntitySet="Blog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Favoriler__Urun___31EC6D26" Association="Self.FK__Favoriler__Urun___31EC6D26">
+            <End Role="Urunler" EntitySet="Urunler" />
+            <End Role="Favoriler" EntitySet="Favoriler" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Favoriler__Uye_i__32E0915F" Association="Self.FK__Favoriler__Uye_i__32E0915F">
+            <End Role="Uyeler" EntitySet="Uyeler" />
+            <End Role="Favoriler" EntitySet="Favoriler" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Siparisle__Urun___33D4B598" Association="Self.FK__Siparisle__Urun___33D4B598">
+            <End Role="Urunler" EntitySet="Urunler" />
+            <End Role="Siparisler" EntitySet="Siparisler" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Siparisle__Uye_i__34C8D9D1" Association="Self.FK__Siparisle__Uye_i__34C8D9D1">
+            <End Role="Uyeler" EntitySet="Uyeler" />
+            <End Role="Siparisler" EntitySet="Siparisler" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Urunler__Kategor__35BCFE0A" Association="Self.FK__Urunler__Kategor__35BCFE0A">
+            <End Role="Kategoriler" EntitySet="Kategoriler" />
+            <End Role="Urunler" EntitySet="Urunler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MytTicaretModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Blog">
+          <Key>
+            <PropertyRef Name="Blog_id" />
+          </Key>
+          <Property Name="Blog_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Blog_Baslık" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Blog_Ozet" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Blog_Acıklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Blog_Resmi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Yonetici_id" Type="Int32" Nullable="false" />
+          <Property Name="Uye_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Uyeler" Relationship="Self.FK__Blog__Uye_id__300424B4" FromRole="Blog" ToRole="Uyeler" />
+          <NavigationProperty Name="Yoneticiler" Relationship="Self.FK__Blog__Yonetici_i__30F848ED" FromRole="Blog" ToRole="Yoneticiler" />
+        </EntityType>
+        <EntityType Name="Favoriler">
+          <Key>
+            <PropertyRef Name="Favori_No" />
+          </Key>
+          <Property Name="Favori_No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Uye_id" Type="Int32" Nullable="false" />
+          <Property Name="Urun_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Urunler" Relationship="Self.FK__Favoriler__Urun___31EC6D26" FromRole="Favoriler" ToRole="Urunler" />
+          <NavigationProperty Name="Uyeler" Relationship="Self.FK__Favoriler__Uye_i__32E0915F" FromRole="Favoriler" ToRole="Uyeler" />
+        </EntityType>
+        <EntityType Name="Kategoriler">
+          <Key>
+            <PropertyRef Name="Kategori_id" />
+          </Key>
+          <Property Name="Kategori_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kategori_Adi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Urunler" Relationship="Self.FK__Urunler__Kategor__35BCFE0A" FromRole="Kategoriler" ToRole="Urunler" />
+        </EntityType>
+        <EntityType Name="Siparisler">
+          <Key>
+            <PropertyRef Name="Kayıt_No" />
+          </Key>
+          <Property Name="Kayıt_No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Siparis_id" Type="Int32" />
+          <Property Name="Siparis_Adet" Type="Int16" Nullable="false" />
+          <Property Name="Siparis_Tarihi" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Uye_id" Type="Int32" Nullable="false" />
+          <Property Name="Urun_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Urunler" Relationship="Self.FK__Siparisle__Urun___33D4B598" FromRole="Siparisler" ToRole="Urunler" />
+          <NavigationProperty Name="Uyeler" Relationship="Self.FK__Siparisle__Uye_i__34C8D9D1" FromRole="Siparisler" ToRole="Uyeler" />
+        </EntityType>
+        <EntityType Name="Urunler">
+          <Key>
+            <PropertyRef Name="Urun_id" />
+          </Key>
+          <Property Name="Urun_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Urun_Adi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Urun_Fiyat" Type="Double" Nullable="false" />
+          <Property Name="Urun_Aciklama" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Urun_Resmi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Kategori_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Favoriler" Relationship="Self.FK__Favoriler__Urun___31EC6D26" FromRole="Urunler" ToRole="Favoriler" />
+          <NavigationProperty Name="Kategoriler" Relationship="Self.FK__Urunler__Kategor__35BCFE0A" FromRole="Urunler" ToRole="Kategoriler" />
+          <NavigationProperty Name="Siparisler" Relationship="Self.FK__Siparisle__Urun___33D4B598" FromRole="Urunler" ToRole="Siparisler" />
+        </EntityType>
+        <EntityType Name="Uyeler">
+          <Key>
+            <PropertyRef Name="Uye_id" />
+          </Key>
+          <Property Name="Uye_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adi_Soyadi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cinsiyet" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Dogum_Tarihi" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Adres" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Kullanici_Adi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sifre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Blog" Relationship="Self.FK__Blog__Uye_id__300424B4" FromRole="Uyeler" ToRole="Blog" />
+          <NavigationProperty Name="Favoriler" Relationship="Self.FK__Favoriler__Uye_i__32E0915F" FromRole="Uyeler" ToRole="Favoriler" />
+          <NavigationProperty Name="Siparisler" Relationship="Self.FK__Siparisle__Uye_i__34C8D9D1" FromRole="Uyeler" ToRole="Siparisler" />
+        </EntityType>
+        <EntityType Name="Yoneticiler">
+          <Key>
+            <PropertyRef Name="Yonetici_id" />
+          </Key>
+          <Property Name="Yonetici_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Y_Kullanici_Adi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Y_Sifre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Blog" Relationship="Self.FK__Blog__Yonetici_i__30F848ED" FromRole="Yoneticiler" ToRole="Blog" />
+        </EntityType>
+        <EntityType Name="Yorumlar">
+          <Key>
+            <PropertyRef Name="Yorum_id" />
+          </Key>
+          <Property Name="Yorum_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Yorum_Yazar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Yorum_Acıklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Blog__Uye_id__300424B4">
+          <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="1" />
+          <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uyeler">
+              <PropertyRef Name="Uye_id" />
+            </Principal>
+            <Dependent Role="Blog">
+              <PropertyRef Name="Uye_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Blog__Yonetici_i__30F848ED">
+          <End Role="Yoneticiler" Type="Self.Yoneticiler" Multiplicity="1" />
+          <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yoneticiler">
+              <PropertyRef Name="Yonetici_id" />
+            </Principal>
+            <Dependent Role="Blog">
+              <PropertyRef Name="Yonetici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Favoriler__Urun___31EC6D26">
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="1" />
+          <End Role="Favoriler" Type="Self.Favoriler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urunler">
+              <PropertyRef Name="Urun_id" />
+            </Principal>
+            <Dependent Role="Favoriler">
+              <PropertyRef Name="Urun_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Favoriler__Uye_i__32E0915F">
+          <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="1" />
+          <End Role="Favoriler" Type="Self.Favoriler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uyeler">
+              <PropertyRef Name="Uye_id" />
+            </Principal>
+            <Dependent Role="Favoriler">
+              <PropertyRef Name="Uye_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Urunler__Kategor__35BCFE0A">
+          <End Role="Kategoriler" Type="Self.Kategoriler" Multiplicity="1" />
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategoriler">
+              <PropertyRef Name="Kategori_id" />
+            </Principal>
+            <Dependent Role="Urunler">
+              <PropertyRef Name="Kategori_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Siparisle__Urun___33D4B598">
+          <End Role="Urunler" Type="Self.Urunler" Multiplicity="1" />
+          <End Role="Siparisler" Type="Self.Siparisler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urunler">
+              <PropertyRef Name="Urun_id" />
+            </Principal>
+            <Dependent Role="Siparisler">
+              <PropertyRef Name="Urun_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Siparisle__Uye_i__34C8D9D1">
+          <End Role="Uyeler" Type="Self.Uyeler" Multiplicity="1" />
+          <End Role="Siparisler" Type="Self.Siparisler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uyeler">
+              <PropertyRef Name="Uye_id" />
+            </Principal>
+            <Dependent Role="Siparisler">
+              <PropertyRef Name="Uye_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MytTicaretEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Blog" EntityType="Self.Blog" />
+          <EntitySet Name="Favoriler" EntityType="Self.Favoriler" />
+          <EntitySet Name="Kategoriler" EntityType="Self.Kategoriler" />
+          <EntitySet Name="Siparisler" EntityType="Self.Siparisler" />
+          <EntitySet Name="Urunler" EntityType="Self.Urunler" />
+          <EntitySet Name="Uyeler" EntityType="Self.Uyeler" />
+          <EntitySet Name="Yoneticiler" EntityType="Self.Yoneticiler" />
+          <EntitySet Name="Yorumlar" EntityType="Self.Yorumlar" />
+          <AssociationSet Name="FK__Blog__Uye_id__300424B4" Association="Self.FK__Blog__Uye_id__300424B4">
+            <End Role="Uyeler" EntitySet="Uyeler" />
+            <End Role="Blog" EntitySet="Blog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Blog__Yonetici_i__30F848ED" Association="Self.FK__Blog__Yonetici_i__30F848ED">
+            <End Role="Yoneticiler" EntitySet="Yoneticiler" />
+            <End Role="Blog" EntitySet="Blog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Favoriler__Urun___31EC6D26" Association="Self.FK__Favoriler__Urun___31EC6D26">
+            <End Role="Urunler" EntitySet="Urunler" />
+            <End Role="Favoriler" EntitySet="Favoriler" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Favoriler__Uye_i__32E0915F" Association="Self.FK__Favoriler__Uye_i__32E0915F">
+            <End Role="Uyeler" EntitySet="Uyeler" />
+            <End Role="Favoriler" EntitySet="Favoriler" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Urunler__Kategor__35BCFE0A" Association="Self.FK__Urunler__Kategor__35BCFE0A">
+            <End Role="Kategoriler" EntitySet="Kategoriler" />
+            <End Role="Urunler" EntitySet="Urunler" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Siparisle__Urun___33D4B598" Association="Self.FK__Siparisle__Urun___33D4B598">
+            <End Role="Urunler" EntitySet="Urunler" />
+            <End Role="Siparisler" EntitySet="Siparisler" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Siparisle__Uye_i__34C8D9D1" Association="Self.FK__Siparisle__Uye_i__34C8D9D1">
+            <End Role="Uyeler" EntitySet="Uyeler" />
+            <End Role="Siparisler" EntitySet="Siparisler" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MytTicaretModelStoreContainer" CdmEntityContainer="MytTicaretEntities">
+          <EntitySetMapping Name="Blog">
+            <EntityTypeMapping TypeName="MytTicaretModel.Blog">
+              <MappingFragment StoreEntitySet="Blog">
+                <ScalarProperty Name="Blog_id" ColumnName="Blog_id" />
+                <ScalarProperty Name="Blog_Baslık" ColumnName="Blog_Baslık" />
+                <ScalarProperty Name="Blog_Ozet" ColumnName="Blog_Ozet" />
+                <ScalarProperty Name="Blog_Acıklama" ColumnName="Blog_Acıklama" />
+                <ScalarProperty Name="Blog_Resmi" ColumnName="Blog_Resmi" />
+                <ScalarProperty Name="Yonetici_id" ColumnName="Yonetici_id" />
+                <ScalarProperty Name="Uye_id" ColumnName="Uye_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Favoriler">
+            <EntityTypeMapping TypeName="MytTicaretModel.Favoriler">
+              <MappingFragment StoreEntitySet="Favoriler">
+                <ScalarProperty Name="Favori_No" ColumnName="Favori_No" />
+                <ScalarProperty Name="Uye_id" ColumnName="Uye_id" />
+                <ScalarProperty Name="Urun_id" ColumnName="Urun_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kategoriler">
+            <EntityTypeMapping TypeName="MytTicaretModel.Kategoriler">
+              <MappingFragment StoreEntitySet="Kategoriler">
+                <ScalarProperty Name="Kategori_id" ColumnName="Kategori_id" />
+                <ScalarProperty Name="Kategori_Adi" ColumnName="Kategori_Adi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Siparisler">
+            <EntityTypeMapping TypeName="MytTicaretModel.Siparisler">
+              <MappingFragment StoreEntitySet="Siparisler">
+                <ScalarProperty Name="Kayıt_No" ColumnName="Kayıt_No" />
+                <ScalarProperty Name="Siparis_id" ColumnName="Siparis_id" />
+                <ScalarProperty Name="Siparis_Adet" ColumnName="Siparis_Adet" />
+                <ScalarProperty Name="Siparis_Tarihi" ColumnName="Siparis_Tarihi" />
+                <ScalarProperty Name="Uye_id" ColumnName="Uye_id" />
+                <ScalarProperty Name="Urun_id" ColumnName="Urun_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Urunler">
+            <EntityTypeMapping TypeName="MytTicaretModel.Urunler">
+              <MappingFragment StoreEntitySet="Urunler">
+                <ScalarProperty Name="Urun_id" ColumnName="Urun_id" />
+                <ScalarProperty Name="Urun_Adi" ColumnName="Urun_Adi" />
+                <ScalarProperty Name="Urun_Fiyat" ColumnName="Urun_Fiyat" />
+                <ScalarProperty Name="Urun_Aciklama" ColumnName="Urun_Aciklama" />
+                <ScalarProperty Name="Urun_Resmi" ColumnName="Urun_Resmi" />
+                <ScalarProperty Name="Kategori_id" ColumnName="Kategori_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Uyeler">
+            <EntityTypeMapping TypeName="MytTicaretModel.Uyeler">
+              <MappingFragment StoreEntitySet="Uyeler">
+                <ScalarProperty Name="Uye_id" ColumnName="Uye_id" />
+                <ScalarProperty Name="Adi_Soyadi" ColumnName="Adi_Soyadi" />
+                <ScalarProperty Name="Cinsiyet" ColumnName="Cinsiyet" />
+                <ScalarProperty Name="Dogum_Tarihi" ColumnName="Dogum_Tarihi" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Kullanici_Adi" ColumnName="Kullanici_Adi" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yoneticiler">
+            <EntityTypeMapping TypeName="MytTicaretModel.Yoneticiler">
+              <MappingFragment StoreEntitySet="Yoneticiler">
+                <ScalarProperty Name="Yonetici_id" ColumnName="Yonetici_id" />
+                <ScalarProperty Name="Y_Kullanici_Adi" ColumnName="Y_Kullanici_Adi" />
+                <ScalarProperty Name="Y_Sifre" ColumnName="Y_Sifre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yorumlar">
+            <EntityTypeMapping TypeName="MytTicaretModel.Yorumlar">
+              <MappingFragment StoreEntitySet="Yorumlar">
+                <ScalarProperty Name="Yorum_id" ColumnName="Yorum_id" />
+                <ScalarProperty Name="Yorum_Yazar" ColumnName="Yorum_Yazar" />
+                <ScalarProperty Name="Yorum_Acıklama" ColumnName="Yorum_Acıklama" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

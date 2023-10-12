@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Hatice_ikkan.Models.Uyeler>
+
+@{
+    ViewBag.Title = "UyelerIndex";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="main-panel">
+    <br />
+    <p>
+        @Html.ActionLink("Yeni Üye", "UyelerCreate", new { @class = "btn btn-success" })
+    </p>
+    <br />
+    <table class="table">
+        <tr>
+            <th>
+                Adı Soyadı
+            </th>
+            <th>
+                Cinsiyet
+            </th>
+            <th>
+                Doğum Tarihi
+            </th>
+            <th>
+                Adres
+            </th>
+            <th>
+                Telefon
+            </th>
+            <th>
+                Mail
+            </th>
+            <th>
+                Kullanıcı Adı
+            </th>
+            <th>
+                Şifre
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Adi_Soyadi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cinsiyet)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dogum_Tarihi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Adres)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kullanici_Adi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sifre)
+                </td>
+                <td>
+                    @Html.ActionLink("Güncelle", "UyelerEdit", new { id = item.Uye_id }) |
+                    @Html.ActionLink("Detay", "UyelerDetails", new { id = item.Uye_id }) |
+                    @Html.ActionLink("Sil", "UyelerDelete", new { id = item.Uye_id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

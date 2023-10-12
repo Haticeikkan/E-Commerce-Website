@@ -1,0 +1,146 @@
+﻿@model Hatice_ikkan.Models.Fav
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/jquery")
+
+<style>
+    .header-v3 .container-menu-desktop {
+        margin-bottom: 100px;
+    }
+
+    .header-v3 .wrap-menu-desktop {
+        background-color: black;
+    }
+
+    .resim_secici {
+        height: 150px;
+        width: 150px;
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 10px;
+        border-color: lightgray;
+    }
+
+        .resim_secici img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+    input {
+        display: inline-block;
+        padding: 15px 25px;
+        font-size: 24px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #f4511e;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 9px #999;
+    }
+
+        input:hover {
+            background-color: #3e8e41
+        }
+
+        input:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+
+    h2, .h2 {
+        font-size: 30px;
+        margin-top: -50px;
+    }
+</style>
+
+<h2 style="text-align:center">FAVORİ SAYFASI</h2>
+<hr />
+
+<script>
+    $(document).on('click', '.number-spinner button', function (e) {
+        e.preventDefault();
+
+        var btn = $(this),
+            oldValue = btn.closest('.number-spinner').find('input').val().trim(),
+            newVal = parseInt(oldValue, 10);
+
+        if (btn.attr('data-dir') == 'up') {
+            newVal++;
+        } else if (btn.attr('data-dir') == 'dwn' && newVal > 1) {
+            newVal--;
+        }
+
+        btn.closest('.number-spinner').find('input').val(newVal);
+
+        // Ensure that the price is a number by removing non-numeric characters
+        var priceText = btn.closest('tr').find('th:eq(3)').text();
+        var price = parseFloat(priceText.replace(/[^\d\.]/g, ''));
+
+        if (!isNaN(price)) {
+            var total = newVal * price;
+            btn.closest('tr').find('th:eq(4)').text(total.toFixed(2));
+
+            // Calculate the grand total
+            var grandTotal = 0;
+            $('.table tr').each(function () {
+                var itemTotalText = $(this).find('th:eq(4)').text();
+                var itemTotal = parseFloat(itemTotalText.replace(/[^\d\.]/g, ''));
+
+                if (!isNaN(itemTotal)) {
+                    grandTotal += itemTotal;
+                }
+            });
+
+            $('#grandTotal').text('Sepetin Toplamı: ' + grandTotal.toFixed(2));
+        } else {
+            console.error('Price is not a valid number:', priceText);
+        }
+    });
+
+</script>
+
+<center>
+    <table class="table table-striped" style="width:40%;">
+        <tr>
+            <th>Resim</th>
+            <th>Ürün Adı</th>
+            <th> </th>
+        </tr>
+
+        @foreach (var item in Model.Favkap)
+        {
+            <tr>
+                <th><img src="~/urun_resimleri/@item.urun.Urun_Resmi" height="80" width="80" /></th>
+                <th>@item.urun.Urun_Adi</th>
+                <th>@Html.ActionLink("Kaldır", "favdan_sil", new { urunid = item.urun.Urun_id }, new { @class = "btn btn-danger" })</th>
+            </tr>
+        }
+
+        <tr>
+            <td colspan="6" align="right">
+                @Html.ActionLink("Hepsini Temizle", "fav_temizle", null, new { @class = "btn btn-danger" }) <br />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="6" align="left">
+                @using (Html.BeginForm("Index", "Urunler"))
+                {
+                    <input type="submit" value="Alışverişe Devam Et" name="Index" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" />
+                }
+            </td>
+        </tr>
+
+    </table>
+
+</center>

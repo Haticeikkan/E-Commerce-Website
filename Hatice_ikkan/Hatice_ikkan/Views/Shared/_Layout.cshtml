@@ -1,0 +1,400 @@
+﻿
+@{
+    Layout = null;
+}
+
+@using Hatice_ikkan.Models;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Myt-Kumaş</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="~/Content/images/icons/icon.png" />
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/fonts/iconic/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/fonts/linearicons-v1.0.0/icon-font.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/animsition/css/animsition.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/MagnificPopup/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/main.css">
+</head>
+<body class="animsition">
+
+    <!-- Header -->
+    <header class="header-v3">
+        <!-- Header desktop -->
+        <div class="container-menu-desktop trans-03">
+            <div class="wrap-menu-desktop">
+                <nav class="limiter-menu-desktop p-l-45">
+
+                    <!-- Logo desktop -->
+                    <a href="@Url.Action("Index","Home")" class="logo">
+                        <img src="~/Content/images/icons/MYT3.png" alt="IMG-LOGO">
+                    </a>
+
+                    <!-- Menu desktop -->
+                    <div class="menu-desktop">
+                        <ul class="main-menu">
+                            <li class="active-menu">
+                                @Html.ActionLink("ANASAYFA", "Index", "Home")
+                            </li>
+
+                            <li>
+                                @Html.ActionLink("ÜRÜNLER", "Index", "Urunler")
+                            </li>
+
+                            <li>
+                                @Html.ActionLink("BİLGİLENDİRME", "Bilgi", "Home")
+                            </li>
+
+                            <li>
+                                @Html.ActionLink("HAKKIMIZDA", "Hakkimizda", "Home")
+                            </li>
+
+                            <li>
+                                @Html.ActionLink("BLOG", "Index", "Blog")
+                            </li>
+
+                            <li>
+                                @Html.ActionLink("İLETİŞİM", "Iletisim", "Home")
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Icon header -->
+                    <div class="wrap-icon-header flex-w flex-r-m h-full">
+                        <div class="flex-c-m h-full p-r-25 bor6">
+                            <div>
+                                    @if (Session["uyem"] != null)
+                                    {
+                                        <div class="dropdown">
+                                            <button type="button" class="btn btn-success dropdown-toggle" id="dropdownMenuIconButton7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="zmdi zmdi-account-o" style="color: green;"></i>
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton9">
+                                                <h6 class="dropdown-header">İşlem Seçiniz</h6>
+                                                <a class="dropdown-item" href="@Url.Action("Index", "Sepet")">Sepetim</a>
+                                                <a class="dropdown-item" href="@Url.Action("Index", "Fav")">Favorilerim</a>
+                                                <a class="dropdown-item" href="@Url.Action("Edit", "Uyeler", new { id = ((Uyeler)Session["uyem"]).Uye_id })">Bilgilerimi Güncelle</a>
+                                                <a class="dropdown-item" href="@Url.Action("guv_cik", "Uyeler")">Güvenli Çıkış</a>
+                                            </div>
+                                        </div>
+                                    }
+                            </div>
+                        </div>
+
+                        <div class="flex-c-m h-full p-lr-19">
+                            <div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 js-show-sidebar">
+                                <i class="zmdi zmdi-menu"></i>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    @RenderBody()
+
+    <!-- Sidebar -->
+    <aside class="wrap-sidebar js-sidebar">
+        <div class="s-full js-hide-sidebar"></div>
+
+        <div class="sidebar flex-col-l p-t-22 p-b-25">
+            <div class="flex-r w-full p-b-30 p-r-27">
+                <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-sidebar">
+                    <i class="zmdi zmdi-close"></i>
+                </div>
+            </div>
+
+            <div class="sidebar-content flex-w w-full p-lr-65 js-pscroll">
+                <ul class="sidebar-link w-full">
+                    <li class="p-b-13">
+                        <a href="@Url.Action("Index","Home")" class="stext-102 cl2 hov-cl1 trans-04">
+                            Ana Sayfa
+                        </a>
+                    </li>
+
+                    <li class="p-b-13">
+                        <a href="@Url.Action("Hakkimizda","Home")" class="stext-102 cl2 hov-cl1 trans-04">
+                            Hakkımızda
+                        </a>
+                    </li>
+
+                    <li class="p-b-13">
+                        <a href="@Url.Action("Bilgi","Home")" class="stext-102 cl2 hov-cl1 trans-04">
+                            Bilgilendirme
+                        </a>
+                    </li>
+
+                    <li class="p-b-13">
+                        <a href="@Url.Action("Index","Blog")" class="stext-102 cl2 hov-cl1 trans-04">
+                            Blog
+                        </a>
+                    </li>
+
+                    <li class="p-b-13">
+                        <a href="@Url.Action("Iletisim","Home")" class="stext-102 cl2 hov-cl1 trans-04">
+                            İletişim
+                        </a>
+                    </li>
+
+                    <li class="p-b-13">
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuOutlineButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Hesabım </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton2">
+                                <a class="dropdown-item" href="@Url.Action("UyeGiris","Uyeler")">Kullanıcı Girişi</a>
+                                <a class="dropdown-item" href="@Url.Action("Giris","Admin")">Admin Girişi </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="sidebar-gallery w-full" style="margin-top:-300px;">
+                    <span class="mtext-101 cl5">
+                        Hakkımızda
+                    </span>
+
+                    <p class="stext-108 cl6 p-t-27">
+                        2023 yılında 2 kardeşin bir heves olarak kurduğu MYT Ticaretin bir alt kolu olan MYT Kumaş olarak sizlere satış yapmaktan mutluluk duyuyoruz. Desteklerinizi bekliyoruz.
+                        <img src="~/Content/images/icons/MYT.png" height="125" width="275" style="border-radius:10px; margin-top:10px;" />
+                    </p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="bg3 p-t-75 p-b-32">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-lg-3 p-b-50">
+                    <h4 class="stext-301 cl0 p-b-30">
+                        Kategoriler
+                    </h4>
+
+                    <ul>
+                        <li class="p-b-10">
+                            <a href="@Url.Action("kislik","Urunler")" class="stext-107 cl7 hov-cl1 trans-04">
+                                Kışlık
+                            </a>
+                        </li>
+
+                        <li class="p-b-10">
+                            <a href="@Url.Action("pamuklu","Urunler")" class="stext-107 cl7 hov-cl1 trans-04">
+                                Pamuklu
+                            </a>
+                        </li>
+
+                        <li class="p-b-10">
+                            <a href="@Url.Action("krep","Urunler")" class="stext-107 cl7 hov-cl1 trans-04">
+                                Krep
+                            </a>
+                        </li>
+
+                        <li class="p-b-10">
+                            <a href="@Url.Action("kot","Urunler")" class="stext-107 cl7 hov-cl1 trans-04">
+                                Kot
+                            </a>
+                        </li>
+
+                        <li class="p-b-10">
+                            <a href="@Url.Action("muhtelif","Urunler")" class="stext-107 cl7 hov-cl1 trans-04">
+                                Muhtelif
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-6 col-lg-3 p-b-50">
+                    <h4 class="stext-301 cl0 p-b-30">
+                        Sitemiz
+                    </h4>
+
+                    <ul>
+                        <li class="p-b-10">
+                            <a href="@Url.Action("Index","Blog")" class="stext-107 cl7 hov-cl1 trans-04">
+                                Blog
+                            </a>
+                        </li>
+
+                        <li class="p-b-10">
+                            <a href="@Url.Action("Bilgi","Home")" class="stext-107 cl7 hov-cl1 trans-04">
+                                Bilgilendirme
+                            </a>
+                        </li>
+
+                        <li class="p-b-10">
+                            <a href="@Url.Action("Index","Urunler")" class="stext-107 cl7 hov-cl1 trans-04">
+                                Ürünler
+                            </a>
+                        </li>
+
+                        <li class="p-b-10">
+                            <a href="@Url.Action("Hakkimizda","Home")" class="stext-107 cl7 hov-cl1 trans-04">
+                                Hakkımızda
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-6 col-lg-3 p-b-50">
+                    <h4 class="stext-301 cl0 p-b-30">
+                        Hakkımızda
+                    </h4>
+
+                    <p class="stext-107 cl7 size-201">
+                        2023 yılında 2 kardeşin bir heves olarak kurduğu MYT Ticaretin bir alt kolu olan MYT Kumaş olarak sizlere satış yapmaktan mutluluk duyuyoruz. Desteklerinizi bekliyoruz.
+                    </p>
+                </div>
+
+                <div class="col-sm-6 col-lg-3 p-b-50">
+                    <h4 class="stext-301 cl0 p-b-30">
+                        Bize Ulaşın
+                    </h4>
+
+                    <div class="p-t-27" style="padding-top: 0px;">
+                        <a href="mailto:haticeikkan@hotmail.com" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                            <i class="fa fa-envelope fa-2x"></i>
+                        </a>
+
+                        <a href="https://www.instagram.com/haticeikkan/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                            <i class="fa fa-instagram fa-2x"></i>
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/haticeikkan/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                            <i class="fa fa-linkedin fa-2x"></i>
+                        </a>
+
+                        <a href="https://www.github.com/haticeikkan/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                            <i class="fa fa-github fa-2x"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="p-t-40" style="position: relative; margin: auto;">
+                    <div class="flex-c-m flex-w p-b-18">
+                        <a href="#" class="m-all-1">
+                            <img src="~/Content/images/icons/icon-pay-01.png" alt="ICON-PAY">
+                        </a>
+
+                        <a href="#" class="m-all-1">
+                            <img src="~/Content/images/icons/icon-pay-02.png" alt="ICON-PAY">
+                        </a>
+
+                        <a href="#" class="m-all-1">
+                            <img src="~/Content/images/icons/icon-pay-03.png" alt="ICON-PAY">
+                        </a>
+
+                        <a href="#" class="m-all-1">
+                            <img src="~/Content/images/icons/icon-pay-04.png" alt="ICON-PAY">
+                        </a>
+
+                        <a href="#" class="m-all-1">
+                            <img src="~/Content/images/icons/icon-pay-05.png" alt="ICON-PAY">
+                        </a>
+                    </div>
+
+                    <p class="stext-107 cl6 txt-center">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> MYT Kumaş - Tüm Hakları Saklıdır.
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/Content/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="~/Content/vendor/animsition/js/animsition.min.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/vendor/select2/select2.min.js"></script>
+    <script>
+        $(".js-select2").each(function () {
+            $(this).select2({
+                minimumResultsForSearch: 20,
+                dropdownParent: $(this).next('.dropDownSelect2')
+            });
+        })</script>
+
+    <script src="~/Content/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/Content/vendor/daterangepicker/daterangepicker.js"></script>
+    <script src="~/Content/vendor/slick/slick.min.js"></script>
+    <script src="~/Content/js/slick-custom.js"></script>
+    <script src="~/Content/vendor/parallax100/parallax100.js"></script>
+    <script>$('.parallax100').parallax100();</script>
+    <script src="~/Content/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+    <script>
+        $('.gallery-lb').each(function () { // the containers for all your galleries
+            $(this).magnificPopup({
+                delegate: 'a', // the selector for gallery item
+                type: 'image',
+                gallery: {
+                    enabled: true
+                },
+                mainClass: 'mfp-fade'
+            });
+        });</script>
+    <script src="~/Content/vendor/isotope/isotope.pkgd.min.js"></script>
+    <script src="~/Content/vendor/sweetalert/sweetalert.min.js"></script>
+    <script>
+        $('.js-addwish-b2').on('click', function (e) {
+            e.preventDefault();
+        });
+
+        $('.js-addwish-b2').each(function () {
+            var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+            $(this).on('click', function () {
+                swal(nameProduct, "Favorilere eklendi.", "success");
+
+                $(this).addClass('js-addedwish-b2');
+                $(this).off('click');
+            });
+        });
+
+        $('.js-addwish-detail').each(function () {
+            var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
+            $(this).on('click', function () {
+                swal(nameProduct, "Favorilere eklendi.", "success");
+
+                $(this).addClass('js-addedwish-detail');
+                $(this).off('click');
+            });
+        });
+
+        $('.js-addcart-detail').each(function () {
+            var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+            $(this).on('click', function () {
+                swal(nameProduct, "Sepete eklendi.", "success");
+            });
+        });</script>
+    <script src="~/Content/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script>
+        $('.js-pscroll').each(function () {
+            $(this).css('position', 'relative');
+            $(this).css('overflow', 'hidden');
+            var ps = new PerfectScrollbar(this, {
+                wheelSpeed: 1,
+                scrollingThreshold: 1000,
+                wheelPropagation: false,
+            });
+
+            $(window).on('resize', function () {
+                ps.update();
+            })
+        });</script>
+    <script src="~/Content/js/main.js"></script>
+</body>
+</html>

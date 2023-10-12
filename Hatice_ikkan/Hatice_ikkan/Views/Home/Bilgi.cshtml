@@ -1,0 +1,130 @@
+﻿
+@{
+    ViewBag.Title = "Bilgi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .header-v3 .container-menu-desktop {
+        margin-bottom: 100px;
+    }
+
+    .header-v3 .wrap-menu-desktop {
+        background-color: black;
+    }
+
+    .accordion {
+        background-color: #B39DDB;
+        color: black;
+        cursor: pointer;
+        padding: 18px;
+        width: 80%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+    }
+
+        .active, .accordion:hover {
+            background-color: #B39DDB;
+        }
+
+        .accordion:after {
+            content: '\002B';
+            color: #777;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+    .active:after {
+        content: "\2212";
+    }
+
+    .panel {
+        padding: 0 18px;
+        background-color: white;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+        width: 75%;
+    }
+</style>
+
+
+<center>
+    <h2 style="margin-top:100px;"> Kaç metre kumaş almalıyım? </h2>
+    <hr style="height: 2px; width: 80%; background-color: black; border: none;">
+    <p style="width: 80%;"> Kumaş alışverişi yapacak olan kişilerin sorduğu ilk soru "Hangi kumaştan kaç metre almalıyım ?” olmaktadır. Bu soru, yapılacak ürüne göre değişim göstermektedir. Örneğin bir elbise yapılacağı zaman alınacak kumaş uzunluğu ile bir perde yapılacağı zaman alınacak kumaş miktarı ciddi anlamda değişim gösterebilmektedir. Bu nedenle öncelikle hangi kumaş çeşidinin ne için kullanılacağını bilmek gerekir.</p>
+
+    <button class="accordion" style="margin-top:25px;">Masa Örtüsü</button>
+    <div class="panel">
+        <p>Masa örtüsü kumaş modelleri leke tutmaz, kolay temizlenir. 6 kişilik masa örtüsü için kumaş uzunluğu; 2 metre, 8 kişilik masa örtüsü için kumaş; 2.25 metre ve 12 kişilik masa örtüsü için kumaş;2.50 metre ölçüleri kullanılır.</p>
+    </div>
+
+    <button class="accordion">Fon Perde</button>
+    <div class="panel">
+        <p>Evinizi renklendirecek fon perde kumaş modelleri. İsterseniz tül ile isterseniz sade fon olarak kullanabilirsiniz. Fon perdeniz tavandan zemine kadar kullanılacaksa uzunluk; 6 metre, cam altı fon perde modeli olarak kullanılacaksa uzunluk; 5 metre kumaş ile dikilir.</p>
+    </div>
+
+    <button class="accordion">Nevresim</button>
+    <div class="panel">
+        <p>Nevresim çeşitleri, takımları kumaş modelleri. Çift kişilik tam takım; 8 metre, Tek kişilik tam takım; 6 metre kumaş ile dikilir. Ortalama kumaş boyutları çift kişilik 8 metre, tek kişilik 6 metredir.</p>
+    </div>
+
+    <button class="accordion">Yorgan</button>
+    <div class="panel">
+        <p>Yorgan kumaşı renk ve modelleri. Tek kişilik yorgan için;Kumaşın enini yorganın  boyu olarak kullanırsanız 3.50 metre kumaş kullanılırken,bazı desenler enini boy yaptığımızda ters duracağı için uygun olmamaktadır.Bu durumlarda 4.5 metre kumaş kullanılması gerekmektedir.Çift kişilik yorgan için ise  5 metre kumaş kullanılmaktadır.</p>
+    </div>
+
+    <button class="accordion">Pantolon</button>
+    <div class="panel">
+        <p>Pantolon kumaş renk ve modelleri. Pantolon için kumaş uzunlukları; 50 bedene kadar 1 boy kumaş, 50 beden üstü 2 boy kumaş ve geniş ispanyol paça pantolon için 2 boy kumaş kullanılır. (Boy pantolon uzunluğunu ifade eder.Ekstradan kemer ve paça boyu da koymak gerekir.) Ortalama 1.25 -1.5 metre.</p>
+    </div>
+
+    <button class="accordion">Etek</button>
+    <div class="panel">
+        <p>
+            Etek için kumaş renk ve modelleri. Etek için kumaş uzunlukları (Çift en kumaş için); <br />
+            -50 bedene kadar düz dar çan etek için; 1 boy kumaş, Ortalama 1 metre, <br />
+            -Parça kalem etek için;1 boy kumaş, <br />
+            -50 beden üstü ve balık kloş 6 parça 8 parça modeller için 2 boy’dur. (Boy eteğin uzunluğunu ifade eder.Kemer boyu da koymak gerekir.) Ortalama 2 metre, <br />
+            Eğer alacağınız kumaş tek en ise ;düz dar etek 2 boy, diğer türler için 3 boy kumaş almak gerekir.
+        </p>
+    </div>
+
+    <button class="accordion">Elbise</button>
+    <div class="panel">
+        <p>
+            Elbise kumaşı renk ve modelleri. Elbise boyutlarına ve modellerine göre değişkenlik gösterir. Çift en kumaşlardan ortalama bir elbise için 2 - 3 metre kumaş kullanılabilir.Eğer kolsuz ve kısa bir elbise yapıyorsanız 2 metre, uzun kollu ve boydan bir elbise ise için 3 metre kumaş almak gerekecektir.
+        </p>
+    </div>
+
+    <button class="accordion">Gömlek</button>
+    <div class="panel">
+        <p>Gömlek kumaşı renk ve modelleri. Ortalama bir gömlek için 1.50 metre kumaş kullanılır.(Çift en kumaş)</p>
+    </div>
+
+    <button class="accordion">Ferace</button>
+    <div class="panel" style="margin-bottom:25px;">
+        <p>Ferace kumaşı renk ve modelleri. Ortalama bir ferace için 3 metre kumaş kullanılır.(Çift en kumaş)</p>
+    </div>
+    <img style="width: 80%; margin-bottom:35px;" src="~/Content/images/tavsiye.png" />
+</center>
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        });
+    }
+</script>

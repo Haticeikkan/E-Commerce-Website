@@ -1,0 +1,61 @@
+﻿@model Hatice_ikkan.Models.Urunler
+
+@{
+    ViewBag.Title = "UrunlerDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="main-panel">
+    <br />
+    <div>
+        <h4>Ürünler Detay Sayfası</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Ürün Adı
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Urun_Adi)
+            </dd>
+
+            <dt>
+                Fiyat
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Urun_Fiyat)
+            </dd>
+
+            <dt>
+                Açıklama
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Urun_Aciklama)
+            </dd>
+
+            <dt>
+                Ürün Resmi
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Urun_Resmi)
+            </dd>
+
+            <dt>
+                Kategori Adı
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Kategoriler.Kategori_Adi)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Güncelle", "UrunlerEdit", new { id = Model.Urun_id }) |
+        @Html.ActionLink("Geri Dön", "UrunlerIndex")
+    </p>
+</div>

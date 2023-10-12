@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Hatice_ikkan.Models.Urunler>
+
+@{
+    ViewBag.Title = "UrunlerIndex";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="main-panel">
+    <br />
+    <p>
+        @Html.ActionLink("Yeni Ürün", "UrunlerCreate", new { @class = "btn btn-success" })
+    </p>
+    <br />
+    <table class="table">
+        <tr>
+            <th>
+                Ürün Adı
+            </th>
+            <th>
+                Fiyat
+            </th>
+            <th>
+                Açıklama
+            </th>
+            <th>
+                Resim
+            </th>
+            <th>
+               Kategori Adı
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Urun_Adi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Urun_Fiyat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Urun_Aciklama)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Urun_Resmi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kategoriler.Kategori_Adi)
+                </td>
+                <td>
+                    @Html.ActionLink("Güncelle", "UrunlerEdit", new { id = item.Urun_id }) |
+                    @Html.ActionLink("Detay", "UrunlerDetails", new { id = item.Urun_id }) |
+                    @Html.ActionLink("Sil", "UrunlerDelete", new { id = item.Urun_id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

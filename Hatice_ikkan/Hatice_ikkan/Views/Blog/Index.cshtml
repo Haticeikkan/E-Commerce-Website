@@ -1,0 +1,122 @@
+﻿@model IEnumerable<Hatice_ikkan.Models.Blog>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    .header-v3 .container-menu-desktop {
+        margin-bottom: 100px;
+    }
+
+    .header-v3 .wrap-menu-desktop {
+        background-color: black;
+    }
+</style>
+
+@*
+    <table class="table">
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Blog_Baslık)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Blog_Ozet)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Blog_Acıklama)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Blog_Resmi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Uyeler.Adi_Soyadi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Yoneticiler.Y_Kullanici_Adi)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Blog_id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Blog_id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Blog_id })
+                </td>
+            </tr>
+        }
+
+    </table>
+*@
+
+
+<!-- Content page -->
+<center>
+    <section class="bg0 p-t-62 p-b-60">
+        <div class="container">
+            <div class="row" style="display: flex; justify-content: center;">
+                <div class="col-md-8 col-lg-9 p-b-80">
+                    <div class="p-r-45 p-r-0-lg">
+                        @foreach (var item in Model)
+                        {
+                            <!-- item blog -->
+                            <div class="p-b-63">
+                                <a class="hov-img0 how-pos5-parent">
+                                    <img src="~/blog_resimleri/@item.Blog_Resmi" alt="IMG-BLOG">
+
+                                    <div class="flex-col-c-m size-123 bg9 how-pos5">
+                                        <span class="ltext-107 cl2 txt-center">
+                                            22
+                                        </span>
+
+                                        <span class="stext-109 cl3 txt-center">
+                                            Jan 2018
+                                        </span>
+                                    </div>
+                                </a>
+
+                                <div class="p-t-32" style="text-align: left;">
+                                    <h4 class="p-b-15">
+                                        <a class="ltext-108 cl2 hov-cl1 trans-04">
+                                            @item.Blog_Baslık
+                                        </a>
+                                    </h4>
+
+                                    <p class="stext-117 cl6">
+                                        @item.Blog_Ozet
+                                    </p>
+
+                                    <div class="flex-w flex-sb-m p-t-18">
+                                        <span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
+                                            <span>
+                                                <span class="cl4">Yazar</span>
+                                                @item.Yoneticiler.Y_Kullanici_Adi
+                                            </span>
+                                        </span>
+
+                                        <a class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
+                                            @Html.ActionLink("Okumak için tıklayınız...", "Details", new { id = item.Blog_id })
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        <!-- Pagination
+                        <div class="flex-l-m flex-w w-full p-t-10 m-lr--7">
+                            <a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">
+                                1
+                            </a>
+
+                            <a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7">
+                                2
+                            </a>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</center>

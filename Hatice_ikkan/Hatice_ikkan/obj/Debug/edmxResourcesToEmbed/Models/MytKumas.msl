@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MytTicaretModelStoreContainer" CdmEntityContainer="MytTicaretEntities">
+    <EntitySetMapping Name="Blog">
+      <EntityTypeMapping TypeName="MytTicaretModel.Blog">
+        <MappingFragment StoreEntitySet="Blog">
+          <ScalarProperty Name="Blog_id" ColumnName="Blog_id" />
+          <ScalarProperty Name="Blog_Baslık" ColumnName="Blog_Baslık" />
+          <ScalarProperty Name="Blog_Ozet" ColumnName="Blog_Ozet" />
+          <ScalarProperty Name="Blog_Acıklama" ColumnName="Blog_Acıklama" />
+          <ScalarProperty Name="Blog_Resmi" ColumnName="Blog_Resmi" />
+          <ScalarProperty Name="Yonetici_id" ColumnName="Yonetici_id" />
+          <ScalarProperty Name="Uye_id" ColumnName="Uye_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Favoriler">
+      <EntityTypeMapping TypeName="MytTicaretModel.Favoriler">
+        <MappingFragment StoreEntitySet="Favoriler">
+          <ScalarProperty Name="Favori_No" ColumnName="Favori_No" />
+          <ScalarProperty Name="Uye_id" ColumnName="Uye_id" />
+          <ScalarProperty Name="Urun_id" ColumnName="Urun_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kategoriler">
+      <EntityTypeMapping TypeName="MytTicaretModel.Kategoriler">
+        <MappingFragment StoreEntitySet="Kategoriler">
+          <ScalarProperty Name="Kategori_id" ColumnName="Kategori_id" />
+          <ScalarProperty Name="Kategori_Adi" ColumnName="Kategori_Adi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Siparisler">
+      <EntityTypeMapping TypeName="MytTicaretModel.Siparisler">
+        <MappingFragment StoreEntitySet="Siparisler">
+          <ScalarProperty Name="Kayıt_No" ColumnName="Kayıt_No" />
+          <ScalarProperty Name="Siparis_id" ColumnName="Siparis_id" />
+          <ScalarProperty Name="Siparis_Adet" ColumnName="Siparis_Adet" />
+          <ScalarProperty Name="Siparis_Tarihi" ColumnName="Siparis_Tarihi" />
+          <ScalarProperty Name="Uye_id" ColumnName="Uye_id" />
+          <ScalarProperty Name="Urun_id" ColumnName="Urun_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Urunler">
+      <EntityTypeMapping TypeName="MytTicaretModel.Urunler">
+        <MappingFragment StoreEntitySet="Urunler">
+          <ScalarProperty Name="Urun_id" ColumnName="Urun_id" />
+          <ScalarProperty Name="Urun_Adi" ColumnName="Urun_Adi" />
+          <ScalarProperty Name="Urun_Fiyat" ColumnName="Urun_Fiyat" />
+          <ScalarProperty Name="Urun_Aciklama" ColumnName="Urun_Aciklama" />
+          <ScalarProperty Name="Urun_Resmi" ColumnName="Urun_Resmi" />
+          <ScalarProperty Name="Kategori_id" ColumnName="Kategori_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Uyeler">
+      <EntityTypeMapping TypeName="MytTicaretModel.Uyeler">
+        <MappingFragment StoreEntitySet="Uyeler">
+          <ScalarProperty Name="Uye_id" ColumnName="Uye_id" />
+          <ScalarProperty Name="Adi_Soyadi" ColumnName="Adi_Soyadi" />
+          <ScalarProperty Name="Cinsiyet" ColumnName="Cinsiyet" />
+          <ScalarProperty Name="Dogum_Tarihi" ColumnName="Dogum_Tarihi" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="Kullanici_Adi" ColumnName="Kullanici_Adi" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Yoneticiler">
+      <EntityTypeMapping TypeName="MytTicaretModel.Yoneticiler">
+        <MappingFragment StoreEntitySet="Yoneticiler">
+          <ScalarProperty Name="Yonetici_id" ColumnName="Yonetici_id" />
+          <ScalarProperty Name="Y_Kullanici_Adi" ColumnName="Y_Kullanici_Adi" />
+          <ScalarProperty Name="Y_Sifre" ColumnName="Y_Sifre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Yorumlar">
+      <EntityTypeMapping TypeName="MytTicaretModel.Yorumlar">
+        <MappingFragment StoreEntitySet="Yorumlar">
+          <ScalarProperty Name="Yorum_id" ColumnName="Yorum_id" />
+          <ScalarProperty Name="Yorum_Yazar" ColumnName="Yorum_Yazar" />
+          <ScalarProperty Name="Yorum_Acıklama" ColumnName="Yorum_Acıklama" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

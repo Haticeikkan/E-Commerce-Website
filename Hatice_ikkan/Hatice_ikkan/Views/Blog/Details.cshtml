@@ -1,0 +1,106 @@
+﻿@model Hatice_ikkan.Models.Blog
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .header-v3 .container-menu-desktop {
+        margin-bottom: 100px;
+    }
+
+    .header-v3 .wrap-menu-desktop {
+        background-color: black;
+    }
+</style>
+
+<h2 style="text-align:center">BLOG</h2>
+<hr />
+
+
+<section class="bg0 p-t-62 p-b-60">
+    <div class="container">
+        <div class="row" style="display: flex; justify-content: center;">
+            <div class="col-md-8 col-lg-9 p-b-80">
+                <div class="p-r-45 p-r-0-lg">
+                    <!-- item blog -->
+                    <center>
+                        <div class="p-b-63">
+                            <a class="hov-img0 how-pos5-parent">
+                                <img src="~/blog_resimleri/@Html.DisplayFor(model => model.Blog_Resmi)">
+
+                                <div class="flex-col-c-m size-123 bg9 how-pos5">
+                                    <span class="ltext-107 cl2 txt-center">
+                                        22
+                                    </span>
+
+                                    <span class="stext-109 cl3 txt-center">
+                                        Jan 2018
+                                    </span>
+                                </div>
+                            </a>
+
+                            <div class="p-t-32" style="text-align: left;">
+                                <h4 class="p-b-15">
+                                    <a class="ltext-108 cl2 hov-cl1 trans-04">
+                                        @Html.DisplayFor(model => model.Blog_Baslık)
+                                    </a>
+                                </h4>
+
+                                <p class="stext-117 cl6">
+                                    @Html.DisplayFor(model => model.Blog_Acıklama)
+                                </p>
+
+                                <div class="flex-w flex-sb-m p-t-18">
+                                    <span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
+                                        <span>
+                                            <span class="cl4">Yazar</span>
+                                            @Html.DisplayFor(model => model.Yoneticiler.Y_Kullanici_Adi)
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </center>
+                </div>
+
+                @* Burası yorum yapma kısmı veritabanını kurarken blogid ile yorumid yi ilişkilendirip yapmak lazım.
+                   github/Haticeikkan dan indirenlerin dikkatine :)
+                <div class="p-t-40" style="text-align:left;">
+                    <h5 class="mtext-113 cl2 p-b-12">
+                        Yorum Yap
+                    </h5>
+
+                    <p class="stext-107 cl6 p-b-40">
+                        Gerekli alanlar işaretlendi *
+                    </p>
+
+                    <form>
+                        <div class="bor19 size-218 m-b-20">
+                            <input class="stext-111 cl2 plh3 size-116 p-lr-18" type="text" name="name" placeholder="İsim *">
+                        </div>
+
+                        <div class="bor19 m-b-20">
+                            <textarea class="stext-111 cl2 plh3 size-124 p-lr-18 p-tb-15" name="cmt" placeholder="Yorum...*"></textarea>
+                        </div>
+
+                        <button class="flex-c-m stext-101 cl0 size-125 bg3 bor2 hov-btn3 p-lr-15 trans-04">
+                            GÖNDER
+                        </button>
+                    </form>
+                </div>
+                *@
+            </div>
+        </div>
+        <div style="margin-top:0px; margin-right:100px;">
+            @using (Html.BeginForm("Index", "Blog"))
+            {
+                <input type="submit" value="Geri Dön" name="Index" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" />
+            }
+        </div>
+    </div>
+
+</section>
+
+

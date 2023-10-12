@@ -1,0 +1,65 @@
+﻿@model Hatice_ikkan.Models.Urunler
+
+@{
+    ViewBag.Title = "UrunlerDelete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="main-panel">
+    <br />
+    <h2>Ürün Güncelleme Sayfası</h2>
+    <br />
+
+    <dl class="dl-horizontal">
+        <dt>
+          Ürün Adı
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Urun_Adi)
+        </dd>
+
+        <dt>
+            Fiyat
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Urun_Fiyat)
+        </dd>
+
+        <dt>
+            Açıklama
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Urun_Aciklama)
+        </dd>
+
+        <dt>
+           Resim
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Urun_Resmi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kategoriler.Kategori_Adi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kategoriler.Kategori_Adi)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-danger" /> |
+            @Html.ActionLink("Geri Dön", "UrunlerIndex")
+        </div>
+    }
+</div>
